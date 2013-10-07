@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TagbinTrials</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_mobile_send">MobileSend</string>
+	<string name="Register">10 digit Mobile No.</string>
+	<string name="Submit">Register :)</string>
+	<string name="app_id">212054278925057</string>
+	<string name="get_started">To get started, log in using Facebook</string>	    
+</resources>
