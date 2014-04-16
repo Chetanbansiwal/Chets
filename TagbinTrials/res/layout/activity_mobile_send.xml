@@ -1,51 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:facebook="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:gravity="center_horizontal"
-        android:orientation="horizontal" >
-    	
-    	<com.facebook.widget.ProfilePictureView
-            android:id="@+id/selection_profile_pic"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center_horizontal"
-            facebook:preset_size="small" />
-    	<TextView
-            android:id="@+id/selection_user_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center"
-            android:textColor="#333"
-            android:textSize="18sp" />
-	</LinearLayout>
-
-    <Button
-        android:id="@+id/bluet"
-        style="?android:attr/borderlessButtonStyle"
+    <com.facebook.widget.ProfilePictureView
+        android:id="@+id/selection_profile_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:background="@drawable/myb"
-        android:text="Activate" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        facebook:preset_size="small" >
+    </com.facebook.widget.ProfilePictureView>
 
-    <ListView
-        android:id="@+id/selection_list"
-        android:layout_width="fill_parent"
+    <TextView
+        android:id="@+id/selection_user_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:background="@drawable/button_border"/>
-    
-    
-    
-</LinearLayout>
+        android:layout_below="@+id/selection_profile_pic"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="69dp"
+        android:layout_toRightOf="@+id/selection_profile_pic"
+        android:text="yo"
+        android:textColor="#333"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/selection_gender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/selection_user_name"
+        android:layout_below="@+id/selection_user_name"
+        android:layout_marginTop="109dp"
+        android:text="yo"
+        android:textColor="#333"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/selection_mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/selection_user_name"
+        android:layout_below="@+id/selection_user_name"
+        android:text="yo"
+        android:textColor="#333"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/selection_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selection_user_name"
+        android:layout_marginRight="30dp"
+        android:layout_toLeftOf="@+id/selection_profile_pic"
+        android:text="yo"
+        android:textColor="#333"
+        android:textSize="18sp" />
+
+</RelativeLayout>

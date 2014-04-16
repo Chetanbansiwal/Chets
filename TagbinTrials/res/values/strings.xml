@@ -8,5 +8,8 @@
 	<string name="Register">10 digit Mobile No.</string>
 	<string name="Submit">Register :)</string>
 	<string name="app_id">212054278925057</string>
-	<string name="get_started">To get started, log in using Facebook</string>	    
+	<string name="get_started">To get started, log in using Facebook</string>
+	<string name="tagline">Making Things Simpler!</string>
+	<string name="logo">Logo of tagBin</string>
+	<string name="bActivate">Activate</string>	    
 </resources>
