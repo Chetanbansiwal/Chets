@@ -1,4 +1,4 @@
-tchetan
+chets
 =======
 
 First Setup of github
