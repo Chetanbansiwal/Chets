@@ -1,0 +1,46 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:gravity="center"
+    tools:context="${packageName}.${activityClass}" >
+	<RelativeLayout 
+	    android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:gravity="center"
+    	android:layout_centerInParent="true"
+	    >
+
+    <VideoView
+        android:id="@+id/prize_video"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/prize_text"
+        android:layout_width="550dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/gail_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/prize_label"
+        android:textColor="#B70002"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:id="@+id/gail_logo"
+        android:layout_width="123dp"
+        android:layout_height="82dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/gail_logo"
+        android:visibility="invisible" />
+    </RelativeLayout>
+
+</RelativeLayout>

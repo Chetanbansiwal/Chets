@@ -1,0 +1,11 @@
+ddms.logcat.auotmonitor.level=error
+ddms.logcat.automonitor.userprompt=true
+eclipse.preferences.version=1
+logcat.view.colsize.Application=229
+logcat.view.colsize.Level=30
+logcat.view.colsize.PID=70
+logcat.view.colsize.TID=70
+logcat.view.colsize.Tag=140
+logcat.view.colsize.Text=733
+logcat.view.colsize.Time=198
+logcat.view.filters.list=name\: 'tagbincam', tag\: 'com.example.tagbincam', text\: '', pid\: '', app\: '', level\: 'verbose', name\: 'morg', tag\: 'com.example.morg', text\: '', pid\: '', app\: '', level\: 'verbose', 

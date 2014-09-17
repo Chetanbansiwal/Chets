@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TagBin Trials</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="edit_msg">Enter text here</string>
+    <string name="button_send">Send!!</string>
+    <string name="title_activity_display_msg">Message Activity</string>
+
+</resources>

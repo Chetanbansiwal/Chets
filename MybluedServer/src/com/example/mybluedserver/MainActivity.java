@@ -24,6 +24,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
@@ -35,6 +36,7 @@ public class MainActivity extends Activity {
 	Button connectNew;
 	ListView listview;
 	BluetoothAdapter btAdapter;
+	TextView tv;
 	Set<BluetoothDevice> devicesArray;
 	ArrayList<String> pairedDevices;
 	ArrayList<BluetoothDevice> devices;
@@ -48,15 +50,20 @@ public class MainActivity extends Activity {
 			super.handleMessage(msg);
 			switch (msg.what){
 			case SUCCESS_CONNECT:
-				//Toast.makeText(getApplicationContext(), "its Done Bro", Toast.LENGTH_SHORT).show();
-				//ConnectedThread connectedThread = new ConnectedThread((BluetoothSocket)msg.obj);
+				Toast.makeText(getApplicationContext(), "its Done Bro", Toast.LENGTH_SHORT).show();
+				ConnectedThread connectedThread = new ConnectedThread((BluetoothSocket)msg.obj);
 				String s = "successfully connected";
+				connectedThread.start();
 				//connectedThread.write(s.getBytes());
 				break;
 			case MESSAGE_READ:
+				Toast.makeText(getApplicationContext(), "getting smthing" , Toast.LENGTH_SHORT).show();
 				byte[] readBuf = (byte[])msg.obj;
 				String str = new String(readBuf);
-				Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
+				if(str == "Take Pic"){
+					Toast.makeText(getApplicationContext(), "Taking Picture", Toast.LENGTH_SHORT).show();	
+				}
+				
 				break;
 			}
 		}
@@ -100,6 +107,7 @@ public class MainActivity extends Activity {
 
 	private void init() {
 		listview = (ListView)findViewById(R.id.listView1);
+		tv = (TextView) findViewById(R.id.textView1);
 		listArray = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, 0);
 		listview.setAdapter(listArray);
@@ -169,7 +177,7 @@ public class MainActivity extends Activity {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-	            	mHandler.obtainMessage(SUCCESS_CONNECT, mmServerSocket).sendToTarget();
+	            	mHandler.obtainMessage(SUCCESS_CONNECT, socket).sendToTarget();
 	                break;
 	            }
 	        }
@@ -196,18 +204,19 @@ public class MainActivity extends Activity {
 	        // Get the input and output streams, using temp objects because
 	        // member streams are final
 	        try {
-	            tmpIn = socket.getInputStream();
-	            tmpOut = socket.getOutputStream();
+	            tmpIn = mmSocket.getInputStream();
+	            tmpOut = mmSocket.getOutputStream();
 	        } catch (IOException e) { }
 	 
 	        mmInStream = tmpIn;
 	        mmOutStream = tmpOut;
+	        //Toast.makeText(getApplicationContext(), "smthing smthing", Toast.LENGTH_SHORT).show();
 	    }
 	 
 	    public void run() {
 	        byte[] buffer;  // buffer store for the stream
 	        int bytes; // bytes returned from read()
-	 
+	        //tv.append("\n smthing serious");
 	        // Keep listening to the InputStream until an exception occurs
 	        while (true) {
 	            try {
@@ -215,6 +224,10 @@ public class MainActivity extends Activity {
 	            	buffer = new byte[1024];
 	            	bytes = mmInStream.read(buffer);
 	                // Send the obtained bytes to the UI activity
+	            	if(bytes>0)
+	            	{
+	          //  		Toast.makeText(getApplicationContext(), "smthing smthing", Toast.LENGTH_SHORT).show();
+	            	}
 	                mHandler.obtainMessage(MESSAGE_READ, bytes, -1, buffer)
 	                        .sendToTarget();
 	            } catch (IOException e) {

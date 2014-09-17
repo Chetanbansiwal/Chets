@@ -1,0 +1,10 @@
+package com.example.tagbintrials;
+
+public class User {
+	private String Dude, Passage;
+	public User(String dude, String passage) {
+		Dude = dude;
+		Passage = passage;
+	}
+
+}

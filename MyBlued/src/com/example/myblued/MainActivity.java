@@ -18,6 +18,10 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,11 +32,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnItemClickListener {
+public class MainActivity extends Activity implements OnItemClickListener, SensorEventListener {
 	
 	public static final UUID MY_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
 	protected static final int SUCCESS_CONNECT = 0;
 	protected static final int MESSAGE_READ = 1;
+	protected static final int SHAKE_NOTICED = 2;
 	ArrayAdapter<String> listArray;
 	Button connectNew;
 	TextView pdiv;
@@ -43,24 +48,51 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	ArrayList<BluetoothDevice> devices;
 	IntentFilter filter;
 	BroadcastReceiver receiver;
+	
+	//Accelerometer
+	private float mLastX, mLastY, mLastZ;
+	private boolean mInitialized;
+	private SensorManager mSensorManager;
+	private Sensor mAccelerometer;
+	private final float NOISE = (float) 2.0;
+	
+	
 	Handler mHandler= new Handler() {
 		
 		@Override
 		public void handleMessage(Message msg) {
 			// TODO Auto-generated method stub
 			super.handleMessage(msg);
+			BluetoothSocket sock;
 			switch (msg.what){
 			case SUCCESS_CONNECT:
-				Toast.makeText(getApplicationContext(), "its Done Bro", Toast.LENGTH_SHORT).show();
-				ConnectedThread connectedThread = new ConnectedThread((BluetoothSocket)msg.obj);
-				String s = "successfully connected";
-				connectedThread.write(s.getBytes());
+				sock = (BluetoothSocket)msg.obj;
+				if(sock.isConnected()) {
+					Toast.makeText(getApplicationContext(), "its Done Bro", Toast.LENGTH_SHORT).show();
+				}
+				String s = "Started Seding";
+				Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
+				ConnectedThread connectedThread = new ConnectedThread(sock);
+				connectedThread.start();
+				connectedThread.write(btAdapter.getAddress().getBytes());	
+				
+				
+				
 				break;
 			case MESSAGE_READ:
 				byte[] readBuf = (byte[])msg.obj;
 				String str = new String(readBuf);
 				Toast.makeText(getApplicationContext(), str, Toast.LENGTH_SHORT).show();
 				break;
+				
+			case SHAKE_NOTICED:
+				String shake = (String)msg.obj;
+				BluetoothDevice deviced = btAdapter.getRemoteDevice("C0:65:99:5C:CF:4A");
+				ConnectThread duder = new ConnectThread(deviced);
+				duder.start();
+				//ConnectedThread connectedThread = new ConnectedThread(sock);
+				//connectedThread.start();
+				//connectedThread.write(shake.getBytes());
 			}
 		}
 	};
@@ -69,6 +101,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		accelrometerInit();
 		init();
 		if (btAdapter == null) {
 			Toast.makeText(getApplicationContext(), "No Bluetooth", Toast.LENGTH_SHORT).show();
@@ -83,7 +116,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 			while(!btAdapter.isEnabled()) {
 				
 			}
-			getPairedDevices();
+			//getPairedDevices();
 			startDiscovery();
 		}
 
@@ -114,6 +147,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		devices = new ArrayList<BluetoothDevice>();
 
 		filter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+		/*
 		receiver = new BroadcastReceiver() {
 
 			@Override
@@ -123,7 +157,18 @@ public class MainActivity extends Activity implements OnItemClickListener {
 				if (BluetoothDevice.ACTION_FOUND.equals(action)) {
 					BluetoothDevice device = arg1
 							.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-					devices.add(device);
+					if(device.getName().contentEquals("ANKIT")){
+						ConnectThread ankit = new ConnectThread(device);
+						ankit.start();
+						while(true)
+						{
+							
+						}
+					}
+					
+					
+					 * devices.add(device);
+					 
 					String s = "";
 					for (int a = 0; a< pairedDevices.size();a++) {
 						if(device.getName().equals(pairedDevices.get(a))){
@@ -133,6 +178,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 					}
 					listArray
 							.add(device.getName() +" "+s+" "+"\n" + device.getAddress());
+							
 				} else if (BluetoothAdapter.ACTION_DISCOVERY_STARTED.equals(action)) {
 
 				} else if (BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)) {
@@ -157,7 +203,50 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		filter = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
 		registerReceiver(receiver, filter);
 	}
-
+*/
+	}
+	
+	//Initialize Accelerometer
+	private void accelrometerInit(){
+	mInitialized = false;
+	mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+	mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+	mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+	}
+	
+	
+	//Sense Sensor changed
+	@Override
+	public  void onSensorChanged(SensorEvent event) {
+		float x = event.values[0];
+		float y = event.values[1];
+		float z = event.values[2];
+		boolean shaked = false;
+		if (!mInitialized) {
+			mLastX = x;
+			mLastY = y;
+			mLastZ = z;
+			mInitialized = true;
+		} else {
+			float deltaX = Math.abs(mLastX - x);
+			float deltaY = Math.abs(mLastY - y);
+			float deltaZ = Math.abs(mLastZ - z);
+			if (deltaX < NOISE) deltaX = (float)0.0;
+			if (deltaY < NOISE) deltaY = (float)0.0;
+			if (deltaZ < NOISE) deltaZ = (float)0.0;
+			mLastX = x;
+			mLastY = y;
+			mLastZ = z;
+			if( deltaX >= 5.0 && deltaY >= 5){
+				shaked = true;
+				Toast.makeText(getApplicationContext(), "Shekit", Toast.LENGTH_SHORT).show();
+				mHandler.obtainMessage(SHAKE_NOTICED, btAdapter.getAddress()).sendToTarget();
+			}
+		
+		}
+		
+	}
+	
 	private void getPairedDevices() {
 		devicesArray = btAdapter.getBondedDevices();
 		if (devicesArray.size() > 0) {
@@ -172,10 +261,10 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		}
 			
 		//if (listArray.getItem(arg2).contains("Paired")) {
-			Toast.makeText(getApplicationContext(), "Awesome its Paired", Toast.LENGTH_SHORT).show();
+			//Toast.makeText(getApplicationContext(), "Awesome its Paired", Toast.LENGTH_SHORT).show();
 			BluetoothDevice selectedDevice = devices.get(arg2);
-			ConnectThread connecti = new ConnectThread(selectedDevice);
-			connecti.start();
+			//ConnectThread connecti = new ConnectThread(selectedDevice);
+			//connecti.start();
 		//} else {
 			//Toast.makeText(getApplicationContext(), "WTH its not wrking", Toast.LENGTH_SHORT).show();
 		//}
@@ -202,6 +291,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	        	Toast.makeText(getApplicationContext(), "Connected or not", Toast.LENGTH_SHORT).show();
 	        }
 	        mmSocket = tmp;
+	        /*
 	        try {
 				mmSocket.connect();
 			} catch (IOException e) {
@@ -211,7 +301,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	        	if(mmSocket.isConnected()){
 	        		Toast.makeText(getApplicationContext(), "Connected1", Toast.LENGTH_SHORT).show();
 	        	}
-	        Toast.makeText(getApplicationContext(), "Out of loop", Toast.LENGTH_SHORT).show();	 
+	        Toast.makeText(getApplicationContext(), "Out of loop", Toast.LENGTH_SHORT).show();*/	 
 	    }
 	 
 	    public void run() {
@@ -223,12 +313,13 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	            // Connect the device through the socket. This will block
 	            // until it succeeds or throws an exception
 	            mmSocket.connect();
+	            /*
 	            if(mmSocket.isConnected())
 	            {
 	            Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT).show();
 	            } else {
 	            	Toast.makeText(getApplicationContext(), "Not Connected", Toast.LENGTH_SHORT).show();
-	            }
+	            }*/
 	        } catch (IOException connectException) {
 	        	
 	            // Unable to connect; close the socket and get out
@@ -237,7 +328,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	            } catch (IOException closeException) { }
 	            return;
 	        }
-	 
+	        //pdiv.append("\n hua kuch");
 	        // Do work to manage the connection (in a separate thread)
 	        mHandler.obtainMessage(SUCCESS_CONNECT, mmSocket).sendToTarget();
 	    }
@@ -265,8 +356,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	        // Get the input and output streams, using temp objects because
 	        // member streams are final
 	        try {
-	            tmpIn = socket.getInputStream();
-	            tmpOut = socket.getOutputStream();
+	            tmpIn = mmSocket.getInputStream();
+	            tmpOut = mmSocket.getOutputStream();
 	        } catch (IOException e) { }
 	 
 	        mmInStream = tmpIn;
@@ -305,5 +396,12 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	            mmSocket.close();
 	        } catch (IOException e) { }
 	    }
+	}
+
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// TODO Auto-generated method stub
+		
 	}
 }

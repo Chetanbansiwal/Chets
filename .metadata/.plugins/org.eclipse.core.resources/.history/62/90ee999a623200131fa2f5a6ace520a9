@@ -1,0 +1,98 @@
+package com.example.tagbintrials;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
+import android.annotation.TargetApi;
+import android.os.Build;
+import com.google.gson.stream.JsonReader;
+import android.util.JsonToken;
+
+public class JSONRead {
+	
+	@TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public List readJsonStream(InputStream in) throws IOException {
+	    JsonReader reader = new JsonReader(new InputStreamReader(in, "UTF-8"));
+	    try {
+	      return readMessagesArray(reader);
+	    }
+	     finally {
+	      reader.close();
+	    }
+	  }
+
+	  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public List readMessagesArray(JsonReader reader) throws IOException {
+	    List messages = new ArrayList();
+
+	    reader.beginArray();
+	    while (reader.hasNext()) {
+	      messages.add(readMessage(reader));
+	    }
+	    reader.endArray();
+	    return messages;
+	  }
+
+	  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public Massage readMessage(JsonReader reader) throws IOException {
+	    long id = -1;
+	    String text = null;
+	    User user = null;
+	    List geo = null;
+
+	    reader.beginObject();
+	    while (reader.hasNext()) {
+	      String name = reader.nextName();
+	      if (name.equals("id")) {
+	        id = reader.nextLong();
+	      } else if (name.equals("text")) {
+	        text = reader.nextString();
+	      } else if (name.equals("geo") && reader.peek() != JsonToken.NULL) {
+	        geo = readDoublesArray(reader);
+	      } else if (name.equals("user")) {
+	        user = readUser(reader);
+	      } else {
+	        reader.skipValue();
+	      }
+	    }
+	    reader.endObject();
+	    
+		return new Massage(id, text, user, geo);
+	  }
+
+	  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public List readDoublesArray(JsonReader reader) throws IOException {
+	    List doubles = new ArrayList();
+
+	    reader.beginArray();
+	    while (reader.hasNext()) {
+	      doubles.add(reader.nextDouble());
+	    }
+	    reader.endArray();
+	    return doubles;
+	  }
+
+	  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+	public User readUser(JsonReader reader) throws IOException {
+	    String username = null;
+	    String followersCount = null;
+
+	    reader.beginObject();
+	    while (reader.hasNext()) {
+	      String name = reader.nextName();
+	      if (name.equals("name")) {
+	        username = reader.nextString();
+	      } else if (name.equals("followers_count")) {
+	        followersCount = reader.nextString();
+	      } else {
+	        reader.skipValue();
+	      }
+	    }
+	    reader.endObject();
+	    return new User(username, followersCount);
+	  }}
+
+

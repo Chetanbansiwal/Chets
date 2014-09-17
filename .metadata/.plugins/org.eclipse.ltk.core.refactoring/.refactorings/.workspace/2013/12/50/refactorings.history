@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;TagbinCam&apos; to &apos;TagApp&apos;&#x0A;- Original element: &apos;TagbinCam&apos;&#x0A;- Renamed element: &apos;TagbinCam&apos;&#x0A;- Update references to refactored element" description="Rename Java project &apos;TagbinCam&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=TagbinCam" name="TagApp" references="true" stamp="1386872382527" version="1.0"/>
+</session>

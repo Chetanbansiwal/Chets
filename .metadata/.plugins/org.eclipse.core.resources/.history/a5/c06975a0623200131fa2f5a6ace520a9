@@ -1,0 +1,18 @@
+package com.example.tagbintrials;
+
+import java.util.List;
+
+public class Massage {
+	private long id = -1;
+	private String text = null;
+	private User user = null;
+	private List geo = null;
+	
+	public Massage(Long a, String b, User c, List d) {
+		id = a;
+		text = b;
+		user = c;
+		geo = d;
+	}
+
+}

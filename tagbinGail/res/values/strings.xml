@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GAIL</string>
+    <string name="register_label">User Registration</string>
+    <string name="name_label">Name * </string>
+    <string name="company_label">Company Name * </string>
+    <string name="state_label">State * </string>
+    <string name="email_label">Email * </string>
+    <string name="phone_label">Phone No. * </string>
+    <string name="next_label">Next</string>
+    <string name="click_pic_label">Click Picture of Visiting Card</string>
+    <string name="polymer_industry_label">How are you related to Polymer industry:</string>
+    <string name="ind1">Processor</string>
+    <string name="ind2">Trader</string>
+    <string name="ind3">Existing GAIL Customer</string>
+    <string name="mandatory"> * </string>
+    <string name="ind4">Others (Please Specify)</string>
+    <string name="poly_material">Which Polymer material do you deal with:</string>
+    <string name="mat1">HDPE</string>
+    <string name="mat2">LLDPE</string>
+    <string name="mat3">LDPE</string>
+    <string name="mat4">PP</string>
+    <string name="mat5">PVC</string>
+    <string name="mat_others">Others</string>
+    <string name="sector_label">Which Sector you cater to:</string>
+    <string name="sector1">Blow Molding</string>
+    <string name="sector2">Injection Molding</string>
+    <string name="sector3">Monofilament and Tarpauline</string>
+    <string name="sector4">Monolayer Film</string>
+    <string name="sector5">Multilayer Film</string>
+    <string name="sector6">Pipe/Ducting</string>
+    <string name="sector7">Raffia</string>
+    <string name="sector8">Roto Molding</string>
+    <string name="consump_label">Your Consumption per month (in MT):</string>
+    <string name="summary_label">Summary</string>
+    <string name="mandatory_fields">(fields with * are mandatory )</string>
+    <string name="submit_label">Submit</string>
+    <string name="numeric">numeric</string>
+    <string name="no_camera">You don\'t have a camera app</string>
+    <string name="photo_clicked">Photo Captured Successfully</string>
+    <string name="empty_message">please enter all the fields</string>
+    <string name="empty_radio">please select one of them</string>
+    <string name="empty_others">please enter the OTHERS field</string>
+    <string name="empty_checkboxes">please select one or more</string>
+    <string name="alphanumeric">(alphanumeric)</string>
+    <string name="empty_consum_value">please enter your consumption value</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="sum_name">Name : </string>
+    <string name="sum_mail">Email : </string>
+    <string name="sum_phone">Phone No. : </string>
+    <string name="sum_state">State : </string>
+    <string name="sum_company_name">Company Name : </string>
+    <string name="sum_relation">Relation to Polymer Industry : </string>
+    <string name="sum_materials">Dealing Polymer Materials : </string>
+    <string name="sum_products">Sector Catering To : </string>
+    <string name="sum_imageUrl">Visiting Card Image Url</string>
+    <string name="sum_consumption">Consumption per Month (in MT) : </string>
+    <string name="wrong_email">please a valid email id </string>
+    <string name="title_activity_prize">PrizeActivity</string>
+    <string name="prize_label">Press button to open box of Endless Possibilities</string>
+    <string name="prize_won"> Congratulations :)  You won a "GIFT" </string>
+    <string name="prize_lost">Sorry :(  better luck next time</string>
+    <string name="title_activity_display_prize">DisplayPrizeActivity</string>
+    <string name="finish_label">Finish</string>
+
+</resources>

@@ -1,0 +1,89 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="2"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background"
+    android:orientation="horizontal"
+    tools:context=".MainActivity" >
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:weightSum="10" >
+        
+    	<ImageView
+    	    android:id="@+id/iView1"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="220dp"
+    	    android:layout_alignParentTop="true"
+    	    android:layout_centerHorizontal="true"
+    	    android:src="@drawable/click_share" />
+    	
+    	<LinearLayout 
+    	    android:orientation="horizontal"
+    	    android:weightSum="10"
+    	    android:layout_width="fill_parent"
+    	    android:layout_height="40dp"
+    	    android:layout_marginRight="20dp"
+    	    android:layout_below="@id/iView1"
+    	    android:layout_alignParentBottom="true"
+    	    android:gravity="center_vertical" >
+    	
+    	<EditText
+    	    android:id="@+id/MItext1"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="wrap_content"
+    	    android:hint="Enter MOODI-ID"
+    	    android:maxLength="10"
+    	    android:visibility="visible" >
+
+    	    <requestFocus />
+    	</EditText>
+    	
+    	<ImageButton
+    	    android:id="@+id/bttnMI1"
+    	    android:layout_width="wrap_content"
+    	    android:layout_height="40dp"
+    	    android:src="@drawable/fb_share"
+    	    android:visibility="visible" />
+    	
+    	</LinearLayout>
+    	
+    </RelativeLayout>
+    
+    <LinearLayout 
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="vertical" >
+        
+    
+	
+    <Button
+        android:id="@+id/bttn1"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:background="@drawable/gal_button" />
+    
+    <Button
+        android:id="@+id/iButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_margin="30dp"
+        android:background="@drawable/cam_button"
+        android:layout_gravity="center" />
+    
+    </LinearLayout>
+
+</LinearLayout>
