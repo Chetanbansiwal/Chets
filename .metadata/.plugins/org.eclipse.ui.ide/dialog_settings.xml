@@ -4,10 +4,15 @@
 		<item value="com.android.ide.eclipse.adt.feature:23.0.0.1245622"/>
 		<item value="com.android.ide.eclipse.adt.package.feature:23.0.0.1245622"/>
 		<item value="com.android.ide.eclipse.ddms.feature:23.0.0.1245622"/>
+		<item value="com.android.ide.eclipse.ddms:22.6.2.v201403212031-1085508"/>
+		<item value="com.android.ide.eclipse.gldebugger:22.6.2.v201403212031-1085508"/>
 		<item value="com.android.ide.eclipse.hierarchyviewer.feature:23.0.0.1245622"/>
+		<item value="com.android.ide.eclipse.hierarchyviewer:22.6.2.v201403212031-1085508"/>
+		<item value="com.android.ide.eclipse.ndk:22.6.2.v201403212031-1085508"/>
 		<item value="com.android.ide.eclipse.traceview.feature:23.0.0.1245622"/>
-		<item value="org.eclipse.cdt.gdb:7.0.0.201202111925"/>
-		<item value="org.eclipse.cdt:8.0.2.201202111925"/>
+		<item value="com.android.ide.eclipse.traceview:22.6.2.v201403212031-1085508"/>
+		<item value="org.eclipse.cdt.gdb:7.0.0.201302132326"/>
+		<item value="org.eclipse.cdt:8.1.2.201302132326"/>
 		<item value="org.eclipse.egit.import:2.2.0.201212191850-r"/>
 		<item value="org.eclipse.egit:2.2.0.201212191850-r"/>
 		<item value="org.eclipse.emf.common:2.9.1.v20130827-0309"/>
@@ -22,21 +27,21 @@
 		<item value="169" key="DIALOG_Y_ORIGIN"/>
 		<item value="195" key="DIALOG_X_ORIGIN"/>
 	</section>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+	</section>
 	<section name="WORKBENCH_SETTINGS">
 		<list key="ENABLED_TRANSFERS">
 			<item value="org.eclipse.ui.workingSets"/>
 			<item value=""/>
 		</list>
 	</section>
-	<section name="ExternalProjectImportWizard">
-		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
-		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
-	</section>
 	<section name="CleanDialogSettings">
 		<item value="607" key="DIALOG_WIDTH"/>
 		<item value="353" key="DIALOG_Y_ORIGIN"/>
-		<item value="657" key="DIALOG_X_ORIGIN"/>
 		<item value="417" key="DIALOG_HEIGHT"/>
+		<item value="657" key="DIALOG_X_ORIGIN"/>
 		<item value="true" key="TOGGLE_SELECTED"/>
 	</section>
 </section>

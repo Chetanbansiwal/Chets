@@ -7660,3 +7660,131 @@ Caused by: org.eclipse.core.internal.resources.ResourceException: Resource is ou
 
 !ENTRY org.eclipse.ui 2 2 2014-09-16 15:40:38.404
 !MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+!SESSION 2014-11-07 00:29:50.658 -----------------------------------------------
+eclipse.buildId=M20130204-1200
+java.version=1.7.0_65
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=en_IN
+Framework arguments:  -product adtproduct
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product adtproduct
+
+!ENTRY org.eclipse.equinox.app 0 0 2014-11-07 00:29:54.457
+!MESSAGE Product adtproduct could not be found.
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-11-07 00:30:14.597
+!MESSAGE projectOpenedWithWorkspace: failed to find manifest package for project android-support-v7-appcompat
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-11-07 00:30:14.774
+!MESSAGE projectOpenedWithWorkspace: failed to find manifest package for project google-play-services_lib
+
+!ENTRY org.eclipse.core.resources 4 4 2014-11-07 00:30:27.815
+!MESSAGE Exception loading preferences from: /android-support-v7-appcompat/.settings/org.eclipse.jdt.core.prefs.
+!STACK 1
+org.eclipse.core.runtime.CoreException: File not found: /home/chetan/Development/adt-bundle-linux-x86_64-20130522/sdk/extras/android/support/v7/appcompat/.settings/org.eclipse.jdt.core.prefs.
+	at org.eclipse.core.internal.filesystem.Policy.error(Policy.java:55)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:377)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:797)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:461)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.create(EclipsePreferences.java:409)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.getChild(EclipsePreferences.java:527)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalNode(EclipsePreferences.java:661)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.node(EclipsePreferences.java:805)
+	at org.eclipse.core.resources.ProjectScope.getNode(ProjectScope.java:67)
+	at org.eclipse.jdt.internal.core.JavaProject.getEclipsePreferences(JavaProject.java:1489)
+	at org.eclipse.jdt.internal.core.JavaProject.getOption(JavaProject.java:1655)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateLibraryEntry(ClasspathEntry.java:2120)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspathEntry(ClasspathEntry.java:2029)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspathEntry(ClasspathEntry.java:1970)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspathEntry(ClasspathEntry.java:1908)
+	at org.eclipse.jdt.internal.core.ClasspathValidation.validate(ClasspathValidation.java:72)
+	at org.eclipse.jdt.internal.core.ChangeClasspathOperation.classpathChanged(ChangeClasspathOperation.java:51)
+	at org.eclipse.jdt.internal.core.SetContainerOperation.executeOperation(SetContainerOperation.java:110)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:728)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:793)
+	at org.eclipse.jdt.core.JavaCore.setClasspathContainer(JavaCore.java:5269)
+	at com.android.ide.eclipse.adt.internal.project.AndroidClasspathContainerInitializer.updateProjects(AndroidClasspathContainerInitializer.java:143)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.updateProjects(ProjectHelper.java:276)
+	at com.android.ide.eclipse.adt.AdtPlugin$7.run(AdtPlugin.java:1451)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.io.FileNotFoundException: /home/chetan/Development/adt-bundle-linux-x86_64-20130522/sdk/extras/android/support/v7/appcompat/.settings/org.eclipse.jdt.core.prefs (No such file or directory)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:146)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:368)
+	... 25 more
+!SUBENTRY 1 org.eclipse.core.filesystem 4 271 2014-11-07 00:30:27.818
+!MESSAGE File not found: /home/chetan/Development/adt-bundle-linux-x86_64-20130522/sdk/extras/android/support/v7/appcompat/.settings/org.eclipse.jdt.core.prefs.
+!STACK 0
+java.io.FileNotFoundException: /home/chetan/Development/adt-bundle-linux-x86_64-20130522/sdk/extras/android/support/v7/appcompat/.settings/org.eclipse.jdt.core.prefs (No such file or directory)
+	at java.io.FileInputStream.open(Native Method)
+	at java.io.FileInputStream.<init>(FileInputStream.java:146)
+	at org.eclipse.core.internal.filesystem.local.LocalFile.openInputStream(LocalFile.java:368)
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:797)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:461)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.create(EclipsePreferences.java:409)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.getChild(EclipsePreferences.java:527)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalNode(EclipsePreferences.java:661)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.node(EclipsePreferences.java:805)
+	at org.eclipse.core.resources.ProjectScope.getNode(ProjectScope.java:67)
+	at org.eclipse.jdt.internal.core.JavaProject.getEclipsePreferences(JavaProject.java:1489)
+	at org.eclipse.jdt.internal.core.JavaProject.getOption(JavaProject.java:1655)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateLibraryEntry(ClasspathEntry.java:2120)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspathEntry(ClasspathEntry.java:2029)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspathEntry(ClasspathEntry.java:1970)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspathEntry(ClasspathEntry.java:1908)
+	at org.eclipse.jdt.internal.core.ClasspathValidation.validate(ClasspathValidation.java:72)
+	at org.eclipse.jdt.internal.core.ChangeClasspathOperation.classpathChanged(ChangeClasspathOperation.java:51)
+	at org.eclipse.jdt.internal.core.SetContainerOperation.executeOperation(SetContainerOperation.java:110)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:728)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:793)
+	at org.eclipse.jdt.core.JavaCore.setClasspathContainer(JavaCore.java:5269)
+	at com.android.ide.eclipse.adt.internal.project.AndroidClasspathContainerInitializer.updateProjects(AndroidClasspathContainerInitializer.java:143)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.updateProjects(ProjectHelper.java:276)
+	at com.android.ide.eclipse.adt.AdtPlugin$7.run(AdtPlugin.java:1451)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.equinox.preferences 4 4 2014-11-07 00:30:27.822
+!MESSAGE Exception loading preferences from: /home/chetan/Development/adt-bundle-linux-x86_64-20130522/sdk/extras/android/support/v7/appcompat/.settings/org.eclipse.jdt.core.prefs.
+!STACK 0
+org.osgi.service.prefs.BackingStoreException: Exception loading preferences from: /android-support-v7-appcompat/.settings/org.eclipse.jdt.core.prefs.
+	at org.eclipse.core.internal.resources.ProjectPreferences.load(ProjectPreferences.java:466)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.create(EclipsePreferences.java:409)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.getChild(EclipsePreferences.java:527)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.internalNode(EclipsePreferences.java:661)
+	at org.eclipse.core.internal.preferences.EclipsePreferences.node(EclipsePreferences.java:805)
+	at org.eclipse.core.resources.ProjectScope.getNode(ProjectScope.java:67)
+	at org.eclipse.jdt.internal.core.JavaProject.getEclipsePreferences(JavaProject.java:1489)
+	at org.eclipse.jdt.internal.core.JavaProject.getOption(JavaProject.java:1655)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateLibraryEntry(ClasspathEntry.java:2120)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspathEntry(ClasspathEntry.java:2029)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspathEntry(ClasspathEntry.java:1970)
+	at org.eclipse.jdt.internal.core.ClasspathEntry.validateClasspathEntry(ClasspathEntry.java:1908)
+	at org.eclipse.jdt.internal.core.ClasspathValidation.validate(ClasspathValidation.java:72)
+	at org.eclipse.jdt.internal.core.ChangeClasspathOperation.classpathChanged(ChangeClasspathOperation.java:51)
+	at org.eclipse.jdt.internal.core.SetContainerOperation.executeOperation(SetContainerOperation.java:110)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.run(JavaModelOperation.java:728)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
+	at org.eclipse.jdt.internal.core.JavaModelOperation.runOperation(JavaModelOperation.java:793)
+	at org.eclipse.jdt.core.JavaCore.setClasspathContainer(JavaCore.java:5269)
+	at com.android.ide.eclipse.adt.internal.project.AndroidClasspathContainerInitializer.updateProjects(AndroidClasspathContainerInitializer.java:143)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.updateProjects(ProjectHelper.java:276)
+	at com.android.ide.eclipse.adt.AdtPlugin$7.run(AdtPlugin.java:1451)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2014-11-07 00:31:04.889
+!MESSAGE Parsing Data for android-19 failed
+!STACK 0
+java.lang.NullPointerException
+	at com.android.ide.eclipse.adt.AdtPlugin.getOutStream(AdtPlugin.java:1759)
+	at com.android.ide.eclipse.adt.internal.project.LibraryClasspathContainerInitializer.convertJarsToClasspathEntries(LibraryClasspathContainerInitializer.java:209)
+	at com.android.ide.eclipse.adt.internal.project.LibraryClasspathContainerInitializer.allocateLibraryContainer(LibraryClasspathContainerInitializer.java:195)
+	at com.android.ide.eclipse.adt.internal.project.LibraryClasspathContainerInitializer.updateProjects(LibraryClasspathContainerInitializer.java:87)
+	at com.android.ide.eclipse.adt.internal.project.ProjectHelper.updateProjects(ProjectHelper.java:278)
+	at com.android.ide.eclipse.adt.internal.sdk.Sdk$6.run(Sdk.java:736)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.core.jobs 2 2 2014-11-07 00:31:05.258
+!MESSAGE Job found still running after platform shutdown.  Jobs should be canceled by the plugin that scheduled them during shutdown: com.android.ide.eclipse.adt.internal.sdk.Sdk$6
