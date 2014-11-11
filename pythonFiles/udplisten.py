@@ -1,5 +1,8 @@
 import socket
+import time
 import sys
+
+from _thread import *
 
 host = ''
 port = 2626
@@ -11,8 +14,25 @@ try:
 except socket.error as e:
 	print(str(e))
 
-s.listen(5)
 
-conn, addr = s.accept()
+def th_client(data, addr):
+	print("received : "+data.decode('utf-8')+" from "+addr[0]+':'+str(addr[1]))
+	s.sendto(str.encode('Welcome, type your info\n'), addr)
 
-print('connected to: '+addr[0]+':'+str(addr[1]))
+	
+	#while True:
+	#	data = conn.recv(2048)
+	#	reply = 'Server output: '+ data.decode('utf-8')
+	#	if not data:
+	#		break
+	#	conn.sendall(str.encode(reply))
+	#conn.close()
+
+while True:
+	data, addr = s.recvfrom(1024)
+	
+	#print('connected to: ')
+	addv = {}
+	addv[0] = '192.168.2.17'
+	addv[1] = 2626
+	start_new_thread(th_client, (data, addv))
