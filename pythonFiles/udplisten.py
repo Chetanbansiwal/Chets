@@ -32,7 +32,5 @@ while True:
 	data, addr = s.recvfrom(1024)
 	
 	#print('connected to: ')
-	addv = {}
-	addv[0] = '192.168.2.17'
-	addv[1] = 2626
-	start_new_thread(th_client, (data, addv))
+	addv = ('192.168.2.17', 2626)
+	start_new_thread(th_client, (data, addr))
